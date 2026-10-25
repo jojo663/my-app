@@ -7,7 +7,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: unzip -q etisalat_simple.zip
+      - run: |
+          unzip -q etisalat_simple.zip
+          sed -i "s#import 'package:intl/intl.dart';#import 'package:intl/intl.dart' show DateFormat, NumberFormat;#" etisalat_simple/lib/core/extensions.dart
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
